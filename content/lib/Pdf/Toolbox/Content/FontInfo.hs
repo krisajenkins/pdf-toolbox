@@ -82,14 +82,16 @@ data CIDFontWidths = CIDFontWidths {
   }
   deriving (Show)
 
+instance Semigroup CIDFontWidths where
+  w1 <> w2 = CIDFontWidths {
+    cidFontWidthsChars = cidFontWidthsChars w1 `mappend` cidFontWidthsChars w2,
+    cidFontWidthsRanges = cidFontWidthsRanges w1 `mappend` cidFontWidthsRanges w2
+    }
+
 instance Monoid CIDFontWidths where
   mempty = CIDFontWidths {
     cidFontWidthsChars = mempty,
     cidFontWidthsRanges = mempty
-    }
-  w1 `mappend` w2 = CIDFontWidths {
-    cidFontWidthsChars = cidFontWidthsChars w1 `mappend` cidFontWidthsChars w2,
-    cidFontWidthsRanges = cidFontWidthsRanges w1 `mappend` cidFontWidthsRanges w2
     }
 
 simpleFontEncodingDecode :: SimpleFontEncoding -> Word8 -> Maybe Text

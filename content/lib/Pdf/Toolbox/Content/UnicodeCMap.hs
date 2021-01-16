@@ -183,7 +183,7 @@ parseHexArray = do
   return res
 
 -- XXX: wtf?!
-fromHex :: Monad m => ByteString -> m ByteString
+fromHex :: MonadFail m => ByteString -> m ByteString
 fromHex hex = do
   let (str, rest) = Base16.decode $ bsToLower hex
   unless (BS.null rest) $

@@ -35,7 +35,7 @@ newtype Boolean = Boolean Bool
 --
 -- They starts with \'/\', but we strip it out, see 'Pdf.Toolbox.Core.Parsers.Object.parseName'
 newtype Name = Name ByteString
-  deriving (Eq, Show, Ord, Monoid)
+  deriving (Eq, Show, Ord, Semigroup, Monoid)
 
 -- | Set of key/value pairs
 newtype Dict = Dict [(Name, Object ())]
